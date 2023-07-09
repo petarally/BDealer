@@ -1,0 +1,16 @@
+{
+  "name": "bdealer",
+  "version": "1.0.0",
+  "description": "This is the app which finds the best deal for any product online.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Petar Prenc",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "puppeteer": "^20.7.4",
+    "puppeteer-core": "^20.7.4"
+  }
+}
