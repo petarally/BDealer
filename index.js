@@ -2,9 +2,12 @@ const express = require('express');
 const puppeteer = require('puppeteer');
 const extractProductName = require('./item');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const port = 3000;
+
+app.use(express.static('public'));
 
 app.get('/', async (req, res) => {
   const given_url = 'https://www.example.com/item/einhell-ge-pm-53-2-s-hw-e-li/';
@@ -57,7 +60,8 @@ app.get('/', async (req, res) => {
   const filteredPrices = filterPrices(prices, averagePrice, threshold);
 
   // Read HTML template file
-  const htmlTemplate = fs.readFileSync('template.html', 'utf-8');
+  const htmlTemplatePath = path.join(__dirname, 'public/templates/template.html');
+  const htmlTemplate = fs.readFileSync(htmlTemplatePath, 'utf-8');
   // Inject the filtered prices into the HTML template
   const html = htmlTemplate.replace('{{prices}}', generatePriceCards(filteredPrices));
 
@@ -142,5 +146,5 @@ function generatePriceCards(prices) {
 }
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running onport ${port}`);
 });
